@@ -2,7 +2,7 @@ import 'package:ecommerce/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce/common/widgets/button/basic_app_button.dart';
 import 'package:ecommerce/presentation/auth/page/password_reset_email.dart';
-import 'package:flutter/gestures.dart';
+// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPasswordPage extends StatelessWidget {

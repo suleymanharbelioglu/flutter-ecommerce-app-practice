@@ -34,7 +34,7 @@ class SignupPage extends StatelessWidget {
               SizedBox(height: 20),
               _continueButton(context),
               SizedBox(height: 20),
-              _Signin(context),
+              _signin(context),
             ],
           ),
         ),
@@ -86,7 +86,7 @@ class SignupPage extends StatelessWidget {
     );
   }
 
-  Widget _Signin(BuildContext context) {
+  Widget _signin(BuildContext context) {
     return RichText(
       text: TextSpan(
         children: [
