@@ -2,6 +2,7 @@ import 'package:ecommerce/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce/common/widgets/button/basic_app_button.dart';
 import 'package:ecommerce/presentation/auth/page/enter_password.dart';
+import 'package:ecommerce/presentation/auth/page/signup.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +61,11 @@ class SigninPage extends StatelessWidget {
           const TextSpan(text: "Don't you hava an account? "),
           TextSpan(
             text: "Create one",
-            recognizer: TapGestureRecognizer()..onTap = () {},
+            recognizer:
+                TapGestureRecognizer()
+                  ..onTap = () {
+                    AppNavigator.push(context, SignupPage());
+                  },
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
