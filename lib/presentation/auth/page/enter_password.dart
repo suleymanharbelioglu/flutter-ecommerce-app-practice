@@ -1,17 +1,15 @@
-import 'package:ecommerce/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce/common/widgets/button/basic_app_button.dart';
-import 'package:ecommerce/presentation/auth/page/enter_password.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SigninPage extends StatelessWidget {
-  SigninPage({super.key});
-  final TextEditingController _emailCon = TextEditingController();
+class EnterPasswordPage extends StatelessWidget {
+  EnterPasswordPage({super.key});
+  final TextEditingController _passwordCon = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppbar(hideBack: true),
+      appBar: BasicAppbar(),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
         child: Column(
@@ -21,9 +19,9 @@ class SigninPage extends StatelessWidget {
             SizedBox(height: 20),
             _emailFied(),
             SizedBox(height: 20),
-            _continueButton(context),
+            _continueButton(),
             SizedBox(height: 20),
-            _createAccount(context),
+            _resetPassword(),
           ],
         ),
       ),
@@ -39,27 +37,22 @@ class SigninPage extends StatelessWidget {
 
   Widget _emailFied() {
     return TextField(
-      controller: _emailCon,
-      decoration: InputDecoration(hintText: "Enter email"),
+      controller: _passwordCon,
+      decoration: InputDecoration(hintText: "Enter password"),
     );
   }
 
-  Widget _continueButton(BuildContext context) {
-    return BasicAppButton(
-      onPressed: () {
-        AppNavigator.push(context, EnterPasswordPage());
-      },
-      title: "Continue",
-    );
+  Widget _continueButton() {
+    return BasicAppButton(onPressed: () {}, title: "Continue");
   }
 
-  Widget _createAccount(BuildContext context) {
+  Widget _resetPassword() {
     return RichText(
       text: TextSpan(
         children: [
-          const TextSpan(text: "Don't you hava an account? "),
+          const TextSpan(text: "Forget password? "),
           TextSpan(
-            text: "Create one",
+            text: "Reset",
             recognizer: TapGestureRecognizer()..onTap = () {},
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
