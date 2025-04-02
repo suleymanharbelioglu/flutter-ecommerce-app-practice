@@ -1,12 +1,12 @@
 import 'package:ecommerce/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce/common/widgets/button/basic_app_button.dart';
-import 'package:ecommerce/presentation/auth/page/forget_password.dart';
+import 'package:ecommerce/presentation/auth/page/password_reset_email.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class EnterPasswordPage extends StatelessWidget {
-  EnterPasswordPage({super.key});
+class ForgetPasswordPage extends StatelessWidget {
+  ForgetPasswordPage({super.key});
   final TextEditingController _passwordCon = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -17,22 +17,21 @@ class EnterPasswordPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _signinText(),
+            _forgotPasswordText(),
             SizedBox(height: 20),
             _emailFied(),
             SizedBox(height: 20),
-            _continueButton(),
+            _continueButton(context),
             SizedBox(height: 20),
-            _resetPassword(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _signinText() {
+  Widget _forgotPasswordText() {
     return Text(
-      "Sign in",
+      "Forgot Password",
       style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
     );
   }
@@ -40,30 +39,16 @@ class EnterPasswordPage extends StatelessWidget {
   Widget _emailFied() {
     return TextField(
       controller: _passwordCon,
-      decoration: InputDecoration(hintText: "Enter password"),
+      decoration: InputDecoration(hintText: "Enter Email"),
     );
   }
 
-  Widget _continueButton() {
-    return BasicAppButton(onPressed: () {}, title: "Continue");
-  }
-
-  Widget _resetPassword(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        children: [
-          const TextSpan(text: "Forget password? "),
-          TextSpan(
-            text: "Reset",
-            recognizer:
-                TapGestureRecognizer()
-                  ..onTap = () {
-                    AppNavigator.push(context, ForgetPasswordPage());
-                  },
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+  Widget _continueButton(BuildContext context) {
+    return BasicAppButton(
+      onPressed: () {
+        AppNavigator.pushReplacement(context, PasswordResetEmailPage());
+      },
+      title: "Continue",
     );
   }
 }
