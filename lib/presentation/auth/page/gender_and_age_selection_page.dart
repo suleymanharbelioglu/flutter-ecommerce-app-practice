@@ -19,16 +19,16 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: BasicAppbar(hideBack: true),
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => ButtonStateCubit()),
-          BlocProvider(create: (context) => GenderSelectionCubit()),
-          BlocProvider(create: (context) => AgesDisplayCubit()),
-          BlocProvider(create: (context) => AgeSelectionCubit()),
-        ],
-        child: BlocListener<ButtonStateCubit, ButtonState>(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ButtonStateCubit()),
+        BlocProvider(create: (context) => GenderSelectionCubit()),
+        BlocProvider(create: (context) => AgesDisplayCubit()),
+        BlocProvider(create: (context) => AgeSelectionCubit()),
+      ],
+      child: Scaffold(
+        appBar: BasicAppbar(),
+        body: BlocListener<ButtonStateCubit, ButtonState>(
           listener: (context, state) {
             if (state is ButtonFailureState) {
               var snackbar = SnackBar(
@@ -161,17 +161,22 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
       color: AppColors.secondBackground,
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Center(
-        child: BasicReactiveButton(
-          onPressed: () {
-            userCreationReq.gender =
-                context.read<GenderSelectionCubit>().selectedIndex;
-            userCreationReq.age = context.read<AgeSelectionCubit>().selectedAge;
-            context.read<ButtonStateCubit>().execute(
-              usecase: SignupUseCase(),
-              params: userCreationReq,
+        child: Builder(
+          builder: (context) {
+            return BasicReactiveButton(
+              onPressed: () {
+                userCreationReq.gender =
+                    context.read<GenderSelectionCubit>().selectedIndex;
+                userCreationReq.age =
+                    context.read<AgeSelectionCubit>().selectedAge;
+                context.read<ButtonStateCubit>().execute(
+                  usecase: SignupUseCase(),
+                  params: userCreationReq,
+                );
+              },
+              title: "Finish",
             );
           },
-          title: "Finish",
         ),
       ),
     );
