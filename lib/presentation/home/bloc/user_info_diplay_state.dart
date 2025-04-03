@@ -1,13 +1,13 @@
 import 'package:ecommerce/domain/auth/entity/user.dart';
 
-abstract class UserInfoDiplayState {}
+abstract class UserInfoDisplayState {}
 
-class UserInfoLoading extends UserInfoDiplayState {}
+class UserInfoLoading extends UserInfoDisplayState {}
 
-class UserInfoLoaded extends UserInfoDiplayState {
+class UserInfoLoaded extends UserInfoDisplayState {
   final UserEntity user;
 
   UserInfoLoaded({required this.user});
 }
 
-class LoadUserInfoFailure extends UserInfoDiplayState {}
+class LoadUserInfoFailure extends UserInfoDisplayState {}

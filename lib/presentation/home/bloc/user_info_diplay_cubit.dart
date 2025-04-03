@@ -3,8 +3,8 @@ import 'package:ecommerce/presentation/home/bloc/user_info_diplay_state.dart';
 import 'package:ecommerce/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class UserInfoDiplayCubit extends Cubit<UserInfoDiplayState> {
-  UserInfoDiplayCubit() : super(UserInfoLoading());
+class UserInfoDisplayCubit extends Cubit<UserInfoDisplayState> {
+  UserInfoDisplayCubit() : super(UserInfoLoading());
 
   void displayUserInfo() async {
     var returnedData = await sl<GetUserUseCase>().call();
