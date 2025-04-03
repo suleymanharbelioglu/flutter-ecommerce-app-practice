@@ -12,6 +12,6 @@ class UserEntity {
     required this.lastName,
     required this.email,
     required this.image,
-    required this.gender,
+    required this.gender
   });
 }

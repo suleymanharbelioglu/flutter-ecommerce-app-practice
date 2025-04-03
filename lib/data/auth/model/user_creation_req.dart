@@ -8,8 +8,8 @@ class UserCreationReq {
 
   UserCreationReq({
     required this.firstName,
-    required this.lastName,
     required this.email,
+    required this.lastName,
     required this.password,
   });
 }

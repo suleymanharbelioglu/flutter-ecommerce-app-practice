@@ -3,11 +3,11 @@ import 'package:ecommerce/core/usecase/usecase.dart';
 import 'package:ecommerce/domain/auth/repository/auth.dart';
 import 'package:ecommerce/service_locator.dart';
 
-class SendPasswordResetEmailUseCase implements UseCase<Either,String> {
+class GetUserUseCase implements UseCase<Either,dynamic> {
 
   @override
-  Future<Either> call({String ? params}) async {
-    return sl<AuthRepository>().sendPasswordResetEmail(params!);
+  Future<Either> call({dynamic params}) async {
+    return await sl<AuthRepository>().getUser();
   }
 
 }

@@ -1,4 +1,3 @@
-import 'dart:js_interop';
 
 import 'package:ecommerce/common/bloc/button/button_state.dart';
 import 'package:ecommerce/common/bloc/button/button_state_cubit.dart';
