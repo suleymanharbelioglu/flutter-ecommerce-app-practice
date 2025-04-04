@@ -1,9 +1,11 @@
+import 'package:ecommerce/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce/core/configs/assets/app_images.dart';
 import 'package:ecommerce/core/configs/assets/app_vectors.dart';
 import 'package:ecommerce/core/configs/theme/app_colors.dart';
 import 'package:ecommerce/domain/auth/entity/user.dart';
 import 'package:ecommerce/presentation/home/bloc/user_info_diplay_cubit.dart';
 import 'package:ecommerce/presentation/home/bloc/user_info_diplay_state.dart';
+import 'package:ecommerce/presentation/settings/pages/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,7 +30,7 @@ class Header extends StatelessWidget {
                 children: [
                   _profileImage(state.user, context),
                   _gender(state.user),
-                  _card(context)
+                  _card(context),
                 ],
               );
             }
@@ -42,18 +44,21 @@ class Header extends StatelessWidget {
   Widget _profileImage(UserEntity user, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // AppNavigator.push(context, const SettingsPage());
+        AppNavigator.push(context, const SettingsPage());
       },
       child: Container(
         height: 40,
         width: 40,
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: user.image.isEmpty
+          image: DecorationImage(
+            image:
+                user.image.isEmpty
                     ? const AssetImage(AppImages.profile)
-                    : NetworkImage(user.image)),
-            color: Colors.red,
-            shape: BoxShape.circle),
+                    : NetworkImage(user.image),
+          ),
+          color: Colors.red,
+          shape: BoxShape.circle,
+        ),
       ),
     );
   }
@@ -63,8 +68,9 @@ class Header extends StatelessWidget {
       height: 40,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-          color: AppColors.secondBackground,
-          borderRadius: BorderRadius.circular(100)),
+        color: AppColors.secondBackground,
+        borderRadius: BorderRadius.circular(100),
+      ),
       child: Center(
         child: Text(
           user.gender == 1 ? 'Men' : 'Women',
@@ -83,11 +89,10 @@ class Header extends StatelessWidget {
         height: 40,
         width: 40,
         decoration: const BoxDecoration(
-            color: AppColors.primary, shape: BoxShape.circle),
-        child: SvgPicture.asset(
-          AppVectors.bag,
-          fit: BoxFit.none,
+          color: AppColors.primary,
+          shape: BoxShape.circle,
         ),
+        child: SvgPicture.asset(AppVectors.bag, fit: BoxFit.none),
       ),
     );
   }
