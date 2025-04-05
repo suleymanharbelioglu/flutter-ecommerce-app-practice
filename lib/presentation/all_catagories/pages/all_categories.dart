@@ -1,8 +1,10 @@
 import 'package:ecommerce/common/bloc/categories/categories_display_cubit.dart';
 import 'package:ecommerce/common/bloc/categories/categories_display_state.dart';
 import 'package:ecommerce/common/helper/image/image_display.dart';
+import 'package:ecommerce/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce/core/configs/theme/app_colors.dart';
+import 'package:ecommerce/presentation/category_products/pages/category_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,7 +51,12 @@ class AllCategoriesPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  //category products page
+                  AppNavigator.push(
+                    context,
+                    CategoryProductsPage(
+                      categoryEntity: state.categories[index],
+                    ),
+                  );
                 },
                 child: Container(
                   height: 70,

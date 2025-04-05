@@ -6,6 +6,7 @@ abstract class ProductFirebaseService {
   Future<Either> getTopSelling();
   Future<Either> getNewIn();
   Future<Either> getProductsByTitle(String title);
+  Future<Either> getProductsByCategoryId(String categoryId);
   Future<Either> getFavoriteProducts();
 }
 
@@ -65,6 +66,21 @@ class ProductFirebaseServiceImpl extends ProductFirebaseService {
               .collection("Products")
               .where("title", isGreaterThanOrEqualTo: title)
               .get();
+      return Right(returnedData.docs.map((e) => e.data()).toList());
+    } catch (e) {
+      return Left("Please try again");
+    }
+  }
+
+  @override
+  Future<Either> getProductsByCategoryId(String categoryId) async {
+    try {
+      var returnedData =
+          await FirebaseFirestore.instance
+              .collection("Products")
+              .where("categoryId", isEqualTo: categoryId)
+              .get();
+
       return Right(returnedData.docs.map((e) => e.data()).toList());
     } catch (e) {
       return Left("Please try again");
