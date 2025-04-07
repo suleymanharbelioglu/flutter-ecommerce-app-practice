@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce/data/product/model/product.dart';
 import 'package:ecommerce/data/product/source/product_firebase_service.dart';
+import 'package:ecommerce/domain/product/entity/product.dart';
 import 'package:ecommerce/domain/product/repository/product.dart';
 import 'package:ecommerce/service_locator.dart';
 
@@ -40,8 +41,9 @@ class ProductRepositoryImpl extends ProductRepository {
   }
 
   @override
-  Future<Either> getFavoriteProducts() async {
-    var returnedData = await sl<ProductFirebaseService>().getFavoriteProducts();
+  Future<Either> getProductsByCategoryId(String categoryId) async {
+    var returnedData = await sl<ProductFirebaseService>()
+        .getProductsByCategoryId(categoryId);
     return returnedData.fold(
       (error) {
         return Left(error);
@@ -76,9 +78,28 @@ class ProductRepositoryImpl extends ProductRepository {
   }
 
   @override
-  Future<Either> getProductsByCategoryId(String categoryId) async {
+  Future<Either> addOrRemoveFavoriteProduct(ProductEntity product) async {
     var returnedData = await sl<ProductFirebaseService>()
-        .getProductsByCategoryId(categoryId);
+        .addOrRemoveFavoriteProduct(product);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        return Right(data);
+      },
+    );
+  }
+
+  @override
+  Future<bool> isFavorite(String productId) async {
+    return await sl<ProductFirebaseService>().isFavorite(productId);
+  }
+
+  @override
+  Future<Either> getFavoritesProducts() async {
+    var returnedData =
+        await sl<ProductFirebaseService>().getFavoritesProducts();
     return returnedData.fold(
       (error) {
         return Left(error);

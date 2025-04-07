@@ -6,6 +6,6 @@ import 'package:ecommerce/service_locator.dart';
 class GetFavoriteProductsUseCase extends UseCase<Either, dynamic> {
   @override
   Future<Either> call({dynamic params}) async {
-    return await sl<ProductRepository>().getFavoriteProducts();
+    return await sl<ProductRepository>().getFavoritesProducts();
   }
 }
